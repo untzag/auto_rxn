@@ -102,7 +102,9 @@ def run(recipe, name="", with_mks=False):
                         except TypeError:  # fallback is a string, probably
                             yield from bluesky.plan_stubs.abs_set(device, fallback)
                             print(f"{name} falling back to {fallback}")
-                        except Exception as e:  # something worse is happening with this device, e.g. yaq daemon crashed
+                        except (
+                            Exception
+                        ) as e:  # something worse is happening with this device, e.g. yaq daemon crashed
                             print(f"cannot set fallback for {name}: {e}")
                     # keep recording data for 100 more seconds
                     try:
